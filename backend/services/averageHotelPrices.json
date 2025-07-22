@@ -1,0 +1,6 @@
+{
+  "New York": { "Marriott": 320, "Hilton": 280, "Any": 200 },
+  "Los Angeles": { "Marriott": 250, "Hilton": 230, "Any": 180 },
+  "Chicago": { "Marriott": 210, "Hilton": 200, "Any": 150 },
+  "Austin": { "Marriott": 180, "Hilton": 170, "Any": 140 }
+} 
