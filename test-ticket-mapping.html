@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Network Integration Test - Ticket Group Mapping</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .test-section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .ticket-group {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            background: #fafafa;
+        }
+        .ticket-group:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .section-info {
+            font-size: 14px;
+            color: #666;
+            margin: 5px 0;
+        }
+        .quantity {
+            background: #e8f5e8;
+            color: #2d5a2d;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-weight: bold;
+        }
+        .buy-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: transform 0.2s;
+        }
+        .buy-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .api-info {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎫 Ticket Network Integration Test</h1>
+        <p>Ticket Group Mapping & Checkout Verification</p>
+        <p><strong>Environment:</strong> Sandbox | <strong>Date:</strong> <span id="currentDate"></span></p>
+    </div>
+
+    <div class="test-section">
+        <h2>📋 Test Status</h2>
+        <div class="status success">
+            ✅ GetEvents API: Working (returns real events from sandbox)
+        </div>
+        <div class="status error">
+            ❌ GetEventTickets API: Not available in sandbox (returns "General error")
+        </div>
+        <div class="status success">
+            ✅ Authentication: Working with correct identifiers (webConfigID=27701, brokerID=13835)
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>🎭 Sample Event Data</h2>
+        <p>Events successfully retrieved from Ticket Network GetEvents API:</p>
+        <div id="eventData">
+            <div class="api-info">
+                <strong>API Call:</strong> GetEvents<br>
+                <strong>Parameters:</strong> webConfigID=27701, numberOfEvents=10<br>
+                <strong>Response:</strong> 10 events found
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>🎫 Ticket Group Display (Mock Data)</h2>
+        <p><em>Note: This shows how ticket groups will be displayed when GetEventTickets API is available in production.</em></p>
+        
+        <div class="ticket-group">
+            <h3>Little Mania Wrestling - December 5, 2025</h3>
+            <div class="section-info">📍 Worcester Palladium</div>
+            <div class="section-info">🎫 Section: Floor A | Row: 5 | Seats: 1-4</div>
+            <div class="price">$45.00</div>
+            <div class="section-info">Face Value: $40.00 | Quantity: <span class="quantity">4</span></div>
+            <div class="section-info">Rating: ⭐⭐⭐⭐⭐ (5/5) | Delivery: E-Ticket</div>
+            <button class="buy-button" onclick="handleBuyClick('tg_12345', 'event_5203849')">
+                Buy Tickets - $45.00
+            </button>
+        </div>
+
+        <div class="ticket-group">
+            <h3>Orlando Pride vs. North Carolina Courage - September 19, 2025</h3>
+            <div class="section-info">📍 Cook's Garage</div>
+            <div class="section-info">🎫 Section: General Admission | Row: N/A | Seats: 1-2</div>
+            <div class="price">$28.50</div>
+            <div class="section-info">Face Value: $25.00 | Quantity: <span class="quantity">2</span></div>
+            <div class="section-info">Rating: ⭐⭐⭐⭐ (4/5) | Delivery: Mobile</div>
+            <button class="buy-button" onclick="handleBuyClick('tg_67890', 'event_5204866')">
+                Buy Tickets - $28.50
+            </button>
+        </div>
+
+        <div class="ticket-group">
+            <h3>Racing Louisville FC vs. Chicago Stars FC - October 10, 2025</h3>
+            <div class="section-info">📍 Lynn Family Stadium</div>
+            <div class="section-info">🎫 Section: 101 | Row: 8 | Seats: 1-6</div>
+            <div class="price">$65.00</div>
+            <div class="section-info">Face Value: $60.00 | Quantity: <span class="quantity">6</span></div>
+            <div class="section-info">Rating: ⭐⭐⭐⭐⭐ (5/5) | Delivery: E-Ticket</div>
+            <button class="buy-button" onclick="handleBuyClick('tg_11111', 'event_5206136')">
+                Buy Tickets - $65.00
+            </button>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>🔗 Checkout Integration</h2>
+        <p>When users click "Buy Tickets", the following data will be passed to checkout:</p>
+        <div class="api-info">
+            <strong>Ticket Group ID:</strong> tg_12345<br>
+            <strong>Event ID:</strong> event_5203849<br>
+            <strong>Price:</strong> $45.00<br>
+            <strong>Quantity:</strong> 4<br>
+            <strong>Section:</strong> Floor A<br>
+            <strong>Row:</strong> 5<br>
+            <strong>Seats:</strong> 1-4<br>
+            <strong>Delivery Method:</strong> E-Ticket<br>
+            <strong>Rating:</strong> 5/5
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>📊 API Integration Details</h2>
+        <div class="api-info">
+            <strong>Working APIs:</strong><br>
+            • GetEvents - Returns event listings<br>
+            • GetCategories - Returns event categories<br>
+            <br>
+            <strong>Pending Production Access:</strong><br>
+            • GetEventTickets - Returns ticket groups and pricing<br>
+            • GetEventTickets2 - Enhanced version with delivery options<br>
+            • GetEventTickets3 - Latest version with pre-discount pricing<br>
+            <br>
+            <strong>Authentication:</strong><br>
+            • OAuth 2.0 Bearer Token<br>
+            • Scopes: inventory_access, webservices_access<br>
+            • webConfigID: 27701 (sandbox) / TBD (production)<br>
+            • brokerID: 13835
+        </div>
+    </div>
+
+    <script>
+        // Set current date
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString();
+        
+        // Handle buy button clicks
+        function handleBuyClick(ticketGroupId, eventId) {
+            alert(`Checkout Integration Test:\n\nTicket Group ID: ${ticketGroupId}\nEvent ID: ${eventId}\n\nThis would redirect to Ticket Network checkout with the ticket group data.`);
+        }
+        
+        // Load sample event data
+        document.addEventListener('DOMContentLoaded', function() {
+            const eventDataDiv = document.getElementById('eventData');
+            eventDataDiv.innerHTML += `
+                <div style="margin-top: 15px;">
+                    <strong>Sample Events:</strong><br>
+                    • Little Mania Wrestling (ID: 5203849) - Dec 5, 2025<br>
+                    • Orlando Pride vs. North Carolina Courage (ID: 5204866) - Sep 19, 2025<br>
+                    • Racing Louisville FC vs. Chicago Stars FC (ID: 5206136) - Oct 10, 2025
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
