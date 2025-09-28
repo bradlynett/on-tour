@@ -1,118 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>On-Tour | Coming Soon</title>
-  <link href="https://fonts.googleapis.com/css?family=Segoe+UI:400,700,900&display=swap" rel="stylesheet">
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      width: 100vw;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      color: #fff;
-      background: #222;
-      overflow: hidden;
-    }
-    body {
-      background: url('Rio Beach Concert.png') center center / cover no-repeat;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      position: relative;
-      min-height: 100vh;
-      width: 100vw;
-    }
-    .branding {
-      position: absolute;
-      top: 0;
-      left: 0;
-      padding: 2rem 2.5rem;
-      z-index: 2;
-      text-align: left;
-    }
-    .branding h1 {
-      font-weight: 900;
-      letter-spacing: 2px;
-      margin: 0 0 0.2em 0;
-      font-size: 3.5rem;
-      line-height: 1.1;
-    }
-    .branding p {
-      font-weight: 400;
-      font-size: 1.5rem;
-      opacity: 0.85;
-      margin: 0;
-    }
-    .main-content {
-      position: absolute;
-      top: 50%;
-      right: 10%;
-      transform: translateY(-40%);
-      width: 45vw;
-      max-width: 700px;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      background: rgba(0,0,0,0.0);
-    }
-    .main-content h2 {
-      font-weight: 700;
-      margin-bottom: 1.2em;
-      text-align: left;
-      font-size: 2rem;
-      line-height: 1.3;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
-    }
-    .main-content p {
-      margin-bottom: 2em;
-      text-align: left;
-      font-size: 1.2rem;
-      line-height: 1.5;
-      color: #bfc9d1;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
-      max-width: 600px;
-    }
-    .coming-soon {
-      position: absolute;
-      top: 24px;
-      right: 40px;
-      background: #222a36;
-      color: #ffb347;
-      padding: 10px 28px;
-      border-radius: 20px;
-      font-weight: bold;
-      font-size: 1.1em;
-      letter-spacing: 1px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      z-index: 10;
-    }
-    @media (max-width: 900px) {
-      .main-content { width: 70vw; right: 5%; }
-      .branding { padding: 1.2rem 1.5rem; }
-    }
-    @media (max-width: 600px) {
-      .branding h1 { font-size: 2.2rem; }
-      .branding p { font-size: 1rem; }
-      .main-content { width: 90vw; right: 2%; }
-      .main-content h2 { font-size: 1.2rem; }
-      .main-content p { font-size: 1rem; }
-      .coming-soon { right: 10px; top: 10px; padding: 6px 12px; font-size: 1em; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>On Tour Sitemap</title>
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1976d2;
+            text-align: center;
+        }
+        .sitemap-link {
+            display: inline-block;
+            background: #1976d2;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .sitemap-link:hover {
+            background: #1565c0;
+        }
+        .info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
 </head>
 <body>
-  <div class="coming-soon">Coming Soon</div>
-  <div class="branding">
-    <h1>On-Tour</h1>
-    <p>Explore and experience the world...</p>
-  </div>
-  <div class="main-content">
-    <h2>Discover amazing concerts and plan and customize perfect trips to see your favorite artists.</h2>
-    <p>We use a deep understanding of how you like to travel and the artists you love to make sure you never miss a show and to discover events happening wherever your travels take you.</p>
-  </div>
+    <div class="container">
+        <h1>🎵 On Tour Sitemap</h1>
+        <p>This page hosts the sitemap for <strong>On Tour</strong> - Concert Tickets & Travel Planning</p>
+        
+        <div class="info">
+            <h3>📋 Sitemap Information</h3>
+            <p><strong>Main Site:</strong> <a href="https://www.on-tour.ai">https://www.on-tour.ai</a></p>
+            <p><strong>Sitemap URL:</strong> <a href="sitemap.xml">sitemap.xml</a></p>
+            <p><strong>Last Updated:</strong> January 25, 2025</p>
+        </div>
+        
+        <a href="sitemap.xml" class="sitemap-link">📄 View XML Sitemap</a>
+        
+        <h3>🔗 Site Pages</h3>
+        <ul>
+            <li><a href="https://www.on-tour.ai/">Home</a></li>
+            <li><a href="https://www.on-tour.ai/tickets">Concert Tickets</a></li>
+            <li><a href="https://www.on-tour.ai/onboarding">Onboarding</a></li>
+            <li><a href="https://www.on-tour.ai/tn-map">Event Map</a></li>
+        </ul>
+        
+        <p><em>This sitemap helps search engines discover and index all pages on the On Tour website.</em></p>
+    </div>
 </body>
-</html> 
+</html>
